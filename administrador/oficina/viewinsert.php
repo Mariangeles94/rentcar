@@ -25,7 +25,7 @@ $gestorOficina = new ManageOficina($bd);
                     <input type="text" name="telefono" id="telfono" value="" /><br>
                     <label for="correo">Correo </label>
                     <input type="text" name="correo" id="correo" value="" /><br>
-                    <input type="submit" value="edicion" />
+                    <input type="submit" value="Nuevo" />
                 </form>
             </div>
         </div>

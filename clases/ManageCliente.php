@@ -9,7 +9,6 @@ class ManageCliente {
 
     
     function get($id) {
-        //devuelve un objeto de la clase city
         $parametros = array();
         $parametros['id'] = $id;
         $this->bd->select($this->tabla, "*", "id=:id", $parametros);
@@ -33,9 +32,8 @@ class ManageCliente {
     function erase(Cliente $cliente) {
         return $this->delete($cliente->getId());
     }
-    //id, matricula, fechasalida, fechaentrada, nombre, apellidos, dni, telefono, precio
+ 
     function set(Cliente $cliente) {
-        //Update de todos los campos menos el id, el id se usara como el where para el update numero de filas modificadas
         $parametrosSet = array();
         $parametrosSet['idmatricula'] = $cliente->getIdmatricula();
         $parametrosSet['fechasalida'] = $cliente->getFechaentrada();
@@ -51,7 +49,6 @@ class ManageCliente {
         return $this->bd->update($this->tabla, $parametrosSet, $parametrosWhere);
     }
     function insert(Cliente $cliente) {
-        //Se pasa un objeto vehiculo y se inserta, se devuelve la matricula del elemento con el que se ha insertado
         $parametrosSet = array();
         
         $parametrosSet['id'] = $cliente->getId();
@@ -77,7 +74,7 @@ class ManageCliente {
         }
         return $r;
     }
-     function getValuesSelect() {/* Ordenado por precio */
+     function getValuesSelect() {
         $this->bd->query($this->tabla, "id, idmatricula", array(), "idmatricula");
         $array = array();
         while ($fila = $this->bd->getRow()) {

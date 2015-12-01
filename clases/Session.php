@@ -61,7 +61,6 @@ class Session {
         session_destroy();
     }
 
-    //El segundo parametro nos manda al sitio y hacemos un exit
     function sendRedirect($destino = "index.php", $final = true){
         header("Location: $destino");
         if($final ===true){

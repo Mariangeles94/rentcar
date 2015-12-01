@@ -1,6 +1,7 @@
 <?php
 
 class DataBase {
+
     private $conexion, $consulta;
 
     function __construct() {
@@ -36,14 +37,13 @@ class DataBase {
     function getError() {
         return $this->consulta->errorInfo();
     }
-    
-            function send($sql, $parametros = array()) {
+
+    function send($sql, $parametros = array()) {
         $this->consulta = $this->conexion->prepare($sql);
         foreach ($parametros as $nombreParametro => $valorParametro) {
             $this->consulta->bindValue($nombreParametro, $valorParametro);
         }
-        //var_dump($parametros);
-        //echo "sql:" . $sql;
+
         return $this->consulta->execute();
     }
 
@@ -63,7 +63,6 @@ class DataBase {
     }
 
     function erase($tabla, $condicion, $parametros = array()) {
-        //delete from TABLA where CONDICION
         $sql = "delete from $tabla where $condicion";
         if ($this->send($sql, $parametros)) {
             return $this->getCount();
@@ -72,7 +71,6 @@ class DataBase {
     }
 
     function delete($tabla, $parametros = array()) {
-        //delete from TABLA where CONDICION
         $camposWhere = "";
         foreach ($parametros as $nombreParametro => $valorParametro) {
             $camposWhere .= $nombreParametro . " = :" . $nombreParametro . " and ";
@@ -87,12 +85,6 @@ class DataBase {
     }
 
     function insert($tabla, $parametros = array(), $auto = true) {
-        //insert into TABLA values (VALORES);
-        //insert into TABLA (CAMPOS) values (VALORES);
-        //insert into TABLA (c1, c2) values (:c1, :c2);
-        //si la tabla tiene un campo autonumerico devuelvo el id
-        //si no devuelvo el numero de filas insertadas(1)
-        //si error devuelvo false
         $campos = "";
         $valores = "";
         foreach ($parametros as $nombreParametro => $valorParametro) {
@@ -113,7 +105,6 @@ class DataBase {
 
     function update($tabla, $parametrosSet = array(), $parametrosWhere = array()) {
         //update TABLA set VALORES where CONDICION
-        //update TABLA set c1=:c1, c2=:c2 where c1=:_c1 and c3=:_c3
         $camposSet = "";
         $camposWhere = "";
         $parametros = array();
@@ -127,7 +118,6 @@ class DataBase {
             $camposWhere .= $nombreParametro . " = :_" . $nombreParametro . " and ";
             $parametros["_" . $nombreParametro] = $valorParametro;
         }
-        //$camposWhere .= "1=1";
         $camposWhere = substr($camposWhere, 0, -4);
         $sql = "update $tabla set $camposSet where $camposWhere";
         if ($this->send($sql, $parametros)) {
@@ -138,13 +128,11 @@ class DataBase {
 
     function query($tabla, $proyeccion = "*", $parametros = array(), $orden = "1", $limite = "") {
         //select CAMPOS from TABLA where CONDICION order by ORDEN LIMIT 
-        //select c1,c2 from TABLA where c3=:c3 and c4 = :c4 order by c2 desc,c1 limit 8,15
         $campos = "";
         foreach ($parametros as $nombreParametro => $valorParametro) {
             $campos .= $nombreParametro . " = :" . $nombreParametro . " and ";
         }
         $campos .= "1=1";
-        //$campos = substr($campos, 0, -4);
         $limit = "";
         if ($limite !== "") {
             $limit = "limit $limite";

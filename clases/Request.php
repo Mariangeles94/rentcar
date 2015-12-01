@@ -2,9 +2,7 @@
 
 class Request {
 
-    //filtra y limpia valores <script>...</script>
     private static function clean($valor, $filtrar) {
-        //Limpiamos
         if ($filtrar === true) {
             $valor = htmlspecialchars($valor);
         }
@@ -33,21 +31,6 @@ class Request {
         return self::get($nombre, $indice);
     }
 
-    /* ---------- Otra forma -------------
-
-      static function req($nombre) {
-      if (Server::isPost()) {
-      if (self::post($nombre) != null) {
-      return self::post($nombre);
-      } else {
-      return self::get($nombre);
-      }
-      }
-      return self::get($nombre);
-      }
-     */
-
-    //$_GET['nombre'] || $_POST['nombre']
     private static function read($parametro, $filtrar = true, $indice = null) {
         if (is_array($parametro)) {
             if ($indice === null) {

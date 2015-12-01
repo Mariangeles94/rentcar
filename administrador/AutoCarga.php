@@ -12,5 +12,5 @@ class AutoCarga {
          }
    }
 }
-spl_autoload_register('AutoCarga::cargar'); // Tiene que estar fuera de la clase
+spl_autoload_register('AutoCarga::cargar'); 
         

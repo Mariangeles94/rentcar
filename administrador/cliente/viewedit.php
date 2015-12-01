@@ -36,7 +36,7 @@ $gestorCliente = new ManageCliente($bd);
                     <input type="text" name="telefono" value="<?php echo $cliente->getTelefono(); ?>" />
                     <label>Precio</label>
                     <input type="text" name="precio" value="<?php echo $cliente->getPrecio(); ?>" />      
-                    <input type="submit" value="edicion"/>
+                    <input type="submit" value="Modificar"/>
                 </form>
             </div>
         </div>

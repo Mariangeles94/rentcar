@@ -33,7 +33,7 @@ $gestorCliente = new ManageCliente($bd);
                     <input type="text" name="telefono" id="telefono" value="" />
                     <label for="precio">Precio </label>
                     <input type="text" name="precio" id="precio" value="" />
-                    <input type="submit" value="edicion" />
+                    <input type="submit" value="Nuevo" />
                 </form>
             </div>
         </div>

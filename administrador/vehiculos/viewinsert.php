@@ -27,7 +27,7 @@ $gestor = new ManageVehiculo($bd);
                     <input type="number" name="oficina" id="oficina" value="" /><br>
                     <label for="disponible">Disponible </label>
                     <input type="text" name="disponible" value="" />
-                    <input type="submit" value="edicion" />
+                    <input type="submit" value="Nuevo" />
                 </form>
             </div>
         </div>

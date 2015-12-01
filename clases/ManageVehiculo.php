@@ -10,7 +10,6 @@ class ManageVehiculo {
     }
 
     function get($matricula) {
-        //devuelve un objeto de la clase city
         $parametros = array();
         $parametros['matricula'] = $matricula;
         $this->bd->select($this->tabla, "*", "matricula=:matricula", $parametros);
@@ -20,7 +19,6 @@ class ManageVehiculo {
         return $vehiculo;
     }
     function getPorOficina($oficina) {
-       
         $parametros = array();
         $parametros['oficina'] = $oficina;
         $this->bd->select($this->tabla, "*", "oficina=:oficina", $parametros);
@@ -35,7 +33,6 @@ class ManageVehiculo {
     function getDisponible($disponible) {
         $parametros = array();
         $parametros['disponible'] = $disponible;
-        //$parametros['oficina'] = $oficina;
         $this->bd->select($this->tabla, "*", "disponible=:disponible", $parametros);
         $r = array();
         while ($fila = $this->bd->getRow()) {
@@ -65,7 +62,6 @@ class ManageVehiculo {
     }
 
     function set(Vehiculo $vehiculo) {
-        //Update de todos los campos menos el id, el id se usara como el where para el update numero de filas modificadas
         $parametrosSet = array();
         $parametrosSet['marca'] = $vehiculo->getMarca();
         $parametrosSet['modelo'] = $vehiculo->getModelo();
@@ -79,7 +75,6 @@ class ManageVehiculo {
     }
 
     function insert(Vehiculo $vehiculo) {
-        //Se pasa un objeto vehiculo y se inserta, se devuelve la matricula del elemento con el que se ha insertado
         $parametrosSet = array();
         $parametrosSet['matricula'] = $vehiculo->getMatricula();
         $parametrosSet['marca'] = $vehiculo->getMarca();
@@ -103,7 +98,7 @@ class ManageVehiculo {
         return $r;
     }
 
-    function getValuesSelect() {/* Ordenado por precio */
+    function getValuesSelect() {
         $this->bd->query($this->tabla, "matricula, precio", array(), "precio");
         $array = array();
         while ($fila = $this->bd->getRow()) {
