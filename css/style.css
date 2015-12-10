@@ -2,7 +2,9 @@
 body{
     margin: 0 auto;
     padding: 0;
-    background-color: graytext;
+    background-color: black;
+    background:url(imagenes/img1.jpg) no-repeat;
+    background-size: cover;
 }
 header nav{
     width: 100%;
@@ -72,7 +74,7 @@ table {
     width: 480px;
     text-align: left;  
     border-collapse: collapse; 
-    margin-left: 5%;
+    margin: 0 auto;
 }
 
 th {     font-size: 13px;     font-weight: normal;     padding: 8px;     background: #b9c9fe;
